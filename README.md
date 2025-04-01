@@ -1,53 +1,57 @@
-Introdução
-Na programação, os paradigmas imperativo e declarativo representam duas abordagens distintas para resolver problemas computacionais. O paradigma imperativo é focado em como o problema deve ser resolvido, ou seja, descreve um conjunto de instruções que modificam o estado do sistema até que o objetivo seja alcançado. Já o paradigma declarativo, enfatiza o que deve ser alcançado, sem especificar como o programa deve atingir esse resultado.
+# Paradigmas de Programação: Imperativo e Declarativo
 
-Paradigma Imperativo
-O paradigma imperativo segue uma abordagem sequencial de comandos, nos quais o programador especifica de forma explícita os passos necessários para alcançar um objetivo. Isso envolve controle de fluxo, manipulação de variáveis e execução de funções. Linguagens como Java, C e Python utilizam esse estilo de programação.
+Os paradigmas de programação são diferentes abordagens para resolver problemas em computação. Entre os paradigmas mais conhecidos, temos o imperativo e o declarativo, que diferem significativamente na forma como os problemas são abordados.
 
-Paradigma Declarativo
-Por outro lado, o paradigma declarativo foca em descrever a lógica ou o resultado desejado, sem se preocupar com os detalhes do controle de fluxo ou da sequência de execução. Linguagens como SQL, Haskell e Prolog são exemplos de linguagens declarativas, nas quais a programação envolve a declaração de relações e a solução do problema sem detalhar explicitamente como ela deve ser resolvida.
+## Paradigma Imperativo
 
-Comparação entre Java e Prolog
-Vamos comparar dois trechos de código que resolvem o mesmo problema: verificar se um número é par.
+No paradigma imperativo, o programador descreve explicitamente como o programa deve atingir um objetivo. Ou seja, define-se uma sequência de instruções que alteram o estado do programa até que o resultado esperado seja alcançado. Linguagens como Java, C e Python são exemplos de linguagens imperativas.
 
-Código Java (Paradigma Imperativo)
-public class Main {
-    public static void main(String[] args) {
-        int numero = 4;
-        if (numero % 2 == 0) {
-            System.out.println("O número é par");
-        } else {
-            System.out.println("O número é ímpar");
-        }
-    }
+### Exemplo de código em Java (Imperativo)
+
+``java public class Fatorial { public static int calcularFatorial(int n) { int resultado = 1; for (int i = 2; i <= n; i++) { resultado *= i; } return resultado; }
+
+public static void main(String[] args) {
+    System.out.println(calcularFatorial(5));
 }
+} ```
 
-Explicação do código Java:
+Como funciona:
 
-O código em Java segue a abordagem imperativa, onde o programador define explicitamente os passos a serem seguidos.
+O código utiliza um laço for que vai de 2 até n, multiplicando os valores sucessivamente e acumulando o resultado na variável resultado.
 
-A primeira linha declara a variável numero com o valor 4.
+A variável resultado é modificada a cada iteração do laço, alterando o estado do sistema a cada passo.
 
-Em seguida, o programa verifica se o número é divisível por 2 (numero % 2 == 0). Se a condição for verdadeira, imprime que o número é par. Caso contrário, imprime que o número é ímpar.
+O programador descreve explicitamente as instruções necessárias para calcular o fatorial, passo a passo, mudando o estado do programa durante a execução.
 
-O código descreve claramente as instruções necessárias para resolver o problema.
+## Paradigma Declarativo
 
-Código Prolog (Paradigma Declarativo)
-par(X) :- X mod 2 =:= 0.
+No paradigma declarativo, o programador descreve o que deve ser feito, sem se preocupar com os detalhes de como isso será realizado. O foco está em declarar relações e propriedades do problema. Linguagens como Prolog, SQL e Haskell seguem esse paradigma, onde o sistema é responsável por descobrir como chegar à solução.
 
-?- par(4).
+### Exemplo de código em Prolog (Declarativo)
 
-Explicação do código Prolog:
+fatorial(0, 1).
+fatorial(N, F) :-
+    N > 0,
+    N1 is N - 1,
+    fatorial(N1, F1),
+    F is N * F1
 
-O código em Prolog segue o paradigma declarativo, onde a solução é declarada em termos de fatos e regras.
+Como funciona:
 
-A regra par(X) :- X mod 2 =:= 0. define que um número X é par se o resto da divisão de X por 2 for igual a zero. Não há necessidade de controle de fluxo ou de especificar como a verificação deve ser feita.
+O código em Prolog começa com um caso base para o fatorial de 0, que é igual a 1 (fatorial(0, 1)).
 
-A consulta ?- par(4). pede ao Prolog para verificar se o número 4 é par, e a resposta será true, pois 4 é divisível por 2.
+A regra recursiva define que o fatorial de um número N é o produto de N e o fatorial de N-1.
 
-Comparação de Abordagens
-Controle de Fluxo: O código Java usa uma estrutura condicional if-else para determinar se o número é par, enquanto o Prolog define uma relação entre números e a propriedade de ser par, sem especificar como a verificação deve ocorrer.
+O Prolog utiliza unificação e backtracking para buscar automaticamente a solução quando a consulta fatorial(5, F) é feita, sem necessidade de especificar explicitamente o controle de fluxo.
 
-Declaração vs Instrução: No Java, o programador descreve explicitamente os passos necessários para atingir o objetivo. Em Prolog, o programador declara que a condição "ser par" é baseada em uma regra matemática (divisão por 2 sem resto) e deixa que o sistema de inferência de Prolog faça a busca pela solução.
+Em vez de alterar o estado de variáveis como no exemplo imperativo, o Prolog define relações lógicas e deixa que o sistema faça o trabalho de resolução.
 
-Abstração: Prolog permite uma maior abstração ao esconder detalhes sobre o processo de execução, permitindo que o programador se concentre apenas nas relações lógicas. O Java, por ser imperativo, exige que o programador se preocupe com os detalhes da execução, como o controle de fluxo.
+## Comparação entre Java (Imperativo) e Prolog (Declarativo)
+
+| Aspecto | Java (Imperativo) | Prolog (Declarativo) | |----------------------|-------------------------------------------------------------|---------------------------------------------------------------| | Como funciona | O programador especifica como a solução deve ser alcançada, com controle explícito sobre o fluxo de execução. | O programador especifica o que deve ser feito, e o sistema encontra a solução automaticamente. | | Controle de Fluxo | A execução é controlada por estruturas como loops (for, while) e condicionais (if). | O controle de fluxo é implícito, com o sistema de inferência do Prolog realizando a busca pela solução. | | Alteração de Estado | O estado do programa é modificado explicitamente a cada iteração de um laço ou execução de uma instrução. | Não há alteração explícita de estados, apenas a definição de relações lógicas. | | Exemplo de Código | Cálculo do fatorial com um laço for e uma variável de resultado que é modificada a cada iteração. | Definição de um caso base e uma regra recursiva que o Prolog resolve usando unificação e backtracking. |
+
+## Conclusão
+
+A principal diferença entre o paradigma imperativo e o declarativo está na maneira como o problema é abordado. No imperativo (como em Java), o programador define explicitamente as etapas a serem seguidas, controlando diretamente o fluxo de execução e alterando o estado do programa. Já no declarativo (como em Prolog), o programador descreve a lógica ou as relações do problema, enquanto o sistema se encarrega de encontrar a solução de maneira automática.
+
+Em resumo, Java (imperativo) exige que o programador detalha as ações que o programa deve executar para chegar ao resultado, enquanto Prolog (declarativo) permite que o programador defina regras e deixe o sistema lidar com a execução.
